@@ -1,0 +1,41 @@
+<ion-header no-border>
+  <ion-navbar color="secondary">
+    <ion-title>
+      Conference Room Booking
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="createTodo()"><ion-icon name="cloud-upload"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content>
+ 
+  <ion-list no-lines>
+ 
+    <ion-item-sliding *ngFor="let todo of todos">
+ 
+      <ion-item>
+ 
+        <ion-avatar item-left>
+          <img src={{todo.image}}>
+        </ion-avatar>
+        {{todo.name}}
+        
+        <ion-badge item-right *ngIf="todo.is_booked==1"> Unavailable till {{todo.end_time}}</ion-badge>
+ 
+      </ion-item>
+ 
+      <ion-item-options>
+        <button ion-button icon-only color="light" (click)="updateTodo(todo)"  *ngIf="todo.is_booked!=1">
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <button ion-button icon-only color="primary" (click)="deleteTodo(todo)"  *ngIf="todo.is_booked!=1">
+          <ion-icon name="checkmark"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+ 
+  </ion-list> 
+ 
+</ion-content>
